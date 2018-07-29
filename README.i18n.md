@@ -1,9 +1,9 @@
-Electronero daemon internationalization
+ElectroneroPulse daemon internationalization
 ==================================
 
 The Electronero command line tools can be translated in various languages. If you wish to contribute and need help/support, contact Interchained on telegram https://t.me/interchained 
 
-In order to use the same translation workflow as the [Electronero Core GUI](https://github.com/electronero/electronero), they use Qt Linguist translation files.  However, to avoid the dependencies on Qt this normally implies, they use a custom loader to read those files at runtime.
+In order to use the same translation workflow as the [ElectroneroPulse Core GUI](https://github.com/electronero-pulse/electronero-pulse), they use Qt Linguist translation files.  However, to avoid the dependencies on Qt this normally implies, they use a custom loader to read those files at runtime.
 
 ### Tools for translators
 
@@ -19,11 +19,11 @@ To update ts files after changing source code:
 
 To add a new language, eg Spanish (ISO code es):
 
-    cp translations/monero.ts translations/electronero_es.ts
+    cp translations/monero.ts translations/electroneropulse_es.ts
 
 To edit translations for Spanish:
 
-    linguist translations/electronero_es.ts
+    linguist translations/electroneropulse_es.ts
 
 To build translations after modifying them:
 
@@ -31,7 +31,7 @@ To build translations after modifying them:
 
 To test a translation:
 
-    LANG=es ./build/release/bin/electronero-wallet-cli
+    LANG=es ./build/release/bin/electroneropulse-wallet-cli
 
 To add new translatable strings in the source code:
 
