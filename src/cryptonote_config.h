@@ -52,7 +52,7 @@
 
 
 // Total number coins to be generated
-#define TOKEN                                           ((uint64_t)(3600000000000000)) // after the ETNX fork
+#define TOKEN                                           ((uint64_t)(3600000000000000)) // 
 
 // Number of smallest units in one coin
 #define COIN                                            ((uint64_t)100) // pow(10, 2)
@@ -161,7 +161,7 @@
 #define HF_VERSION_MIN_MIXIN_4                          7
 #define HF_VERSION_MIN_MIXIN_6                          8
 
-#define CRYPTONOTE_RINGDB_DIR                           ".shared-etnx-ringdb" // shared-ringdb"
+#define CRYPTONOTE_RINGDB_DIR                           ".shared-etnxp-ringdb" // shared-ringdb"
 
 #define MIN_MIXIN                                       1      // minimum mixin allowed
 #define MAX_MIXIN                                       100    // maximum mixin allowed
