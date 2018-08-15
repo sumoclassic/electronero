@@ -717,7 +717,18 @@ namespace cryptonote
   {
     switch (decimal_point)
     {
+      case 12:
+      case 11:
+      case 10:
+      case 9:
+      case 8:
+      case 7:
+      case 6:
+      case 5:
+      case 4:
+      case 3:
       case 2:
+      case 0:
         default_decimal_point = decimal_point;
         break;
       default:
@@ -736,10 +747,30 @@ namespace cryptonote
       decimal_point = default_decimal_point;
     switch (std::atomic_load(&default_decimal_point))
     {
-      case 2:
+      case 12:
         return "electroneropulse";
+      case 11:
+        return "wisdomXP";
+      case 10:
+        return "spiritXP";
+      case 9:
+        return "blissXP";
+      case 8:
+        return "tokenXP";
+      case 7:
+        return "omegaXP";
+      case 6:
+        return "alphaXP";
+      case 5:
+        return "karmaXP";
+      case 4:
+        return "zenXP";
+      case 3:
+        return "shiftXP";
+      case 2:
+        return "electronero";
       case 0:
-        return "ecent";
+        return "noXP";
       default:
         ASSERT_MES_AND_THROW("Invalid decimal point specification: " << default_decimal_point);
     }
