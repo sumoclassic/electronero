@@ -131,4 +131,4 @@ VOLUME /wallet
 EXPOSE 22080
 EXPOSE 22081
 
-ENTRYPOINT ["electronerod", "--p2p-bind-ip=0.0.0.0", "--p2p-bind-port=22080", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=22081", "--non-interactive", "--confirm-external-bind"]
+ENTRYPOINT ["electroneropulsed", "--p2p-bind-ip=0.0.0.0", "--p2p-bind-port=22080", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=22081", "--non-interactive", "--confirm-external-bind"]

@@ -1,4 +1,4 @@
-# Electronero
+# ElectroneroPulse
 
 Source code forked from Monero
 
@@ -117,7 +117,13 @@ X's indicate that these details have not been determined as of commit date.
 
 Approximately three months prior to a scheduled software upgrade, a branch from Master will be created with the new release version tag. Pull requests that address bugs should then be made to both Master and the new release branch. Pull requests that require extensive review and testing (generally, optimizations and new features) should *not* be made to the release branch. 
 
+
 ## Compiling Electronero from source
+
+
+- GitHub: [https://github.com/electronero-pulse/](https://github.com/electronero-pulse)
+
+## Compiling ElectroneroPulse from source
 
 ### Dependencies
 
@@ -158,7 +164,7 @@ build the library binary manually. This can be done with the following command `
 
 Clone recursively to pull-in needed submodule(s):
 
-`$ git clone --recursive https://github.com/electronero/electronero`
+`$ git clone --recursive https://github.com/electronero-pulse/electronero-pulse`
 
 If you already have a repo cloned, initialize and update:
 
@@ -166,7 +172,7 @@ If you already have a repo cloned, initialize and update:
 
 ### Build instructions
 
-Electronero uses the CMake build system and a top-level [Makefile](Makefile) that
+ElectroneroPulse uses the CMake build system and a top-level [Makefile](Makefile) that
 invokes cmake commands as needed.
 
 #### On Linux and OS X
@@ -174,7 +180,7 @@ invokes cmake commands as needed.
 * Install the dependencies
 * Change to the root of the source code directory and build:
 
-        cd electronero
+        cd electronero-pulse
         make
 
     *Optional*: If your machine has several cores and enough memory, enable
@@ -187,9 +193,9 @@ invokes cmake commands as needed.
 
 * The resulting executables can be found in `build/release/bin`
 
-* Add `PATH="$PATH:$HOME/electronero/build/release/bin"` to `.profile`
+* Add `PATH="$PATH:$HOME/electronero-pulse/build/release/bin"` to `.profile`
 
-* Run Electronero with `electronerod --detach`
+* Run ElectroneroPulse with `electroneropulsed --detach`
 
 * **Optional**: build and run the test suite to verify the binaries:
 
@@ -217,7 +223,7 @@ Tested on a Raspberry Pi Zero with a clean install of minimal Raspbian Stretch (
 
 * `apt-get update && apt-get upgrade` to install all of the latest software
 
-* Install the dependencies for Electronero from the 'Debian' column in the table above.
+* Install the dependencies for ElectroneroPulse from the 'Debian' column in the table above.
 
 * Increase the system swap size:
 ```
@@ -226,10 +232,10 @@ Tested on a Raspberry Pi Zero with a clean install of minimal Raspbian Stretch (
 	CONF_SWAPSIZE=1024  
 	sudo /etc/init.d/dphys-swapfile start  
 ```
-* Clone electronero and checkout most recent release version:
+* Clone electroneropulse and checkout most recent release version:
 ```
-        git clone https://github.com/electronero/electronero.git
-	cd electronero
+        git clone https://github.com/electronero-pulse/electronero-pulse.git
+	cd electronero-pulse
 	git checkout tags/v0.11.1.0
 ```
 * Build:
@@ -240,15 +246,15 @@ Tested on a Raspberry Pi Zero with a clean install of minimal Raspbian Stretch (
 
 * The resulting executables can be found in `build/release/bin`
 
-* Add `PATH="$PATH:$HOME/electronero/build/release/bin"` to `.profile`
+* Add `PATH="$PATH:$HOME/electronero-pulse/build/release/bin"` to `.profile`
 
-* Run Electronero with `electronero --detach`
+* Run ElectroneroPulse with `electroneropulse --detach`
 
 * You may wish to reduce the size of the swap file after the build has finished, and delete the boost directory from your home directory
 
 #### *Note for Raspbian Jessie users:*
 
-If you are using the older Raspbian Jessie image, compiling Electronero is a bit more complicated. The version of Boost available in the Debian Jessie repositories is too old to use with Electronero, and thus you must compile a newer version yourself. The following explains the extra steps, and has been tested on a Raspberry Pi 2 with a clean install of minimal Raspbian Jessie.
+If you are using the older Raspbian Jessie image, compiling ElectroneroPulse is a bit more complicated. The version of Boost available in the Debian Jessie repositories is too old to use with ElectroneroPulse, and thus you must compile a newer version yourself. The following explains the extra steps, and has been tested on a Raspberry Pi 2 with a clean install of minimal Raspbian Jessie.
 
 * As before, `apt-get update && apt-get upgrade` to install all of the latest software, and increase the system swap size
 
@@ -259,7 +265,7 @@ If you are using the older Raspbian Jessie image, compiling Electronero is a bit
 	sudo /etc/init.d/dphys-swapfile start  
 ```
 
-* Then, install the dependencies for Electronero except `libunwind` and `libboost-all-dev`
+* Then, install the dependencies for ElectroneroPulse except `libunwind` and `libboost-all-dev`
 
 * Install the latest version of boost (this may first require invoking `apt-get remove --purge libboost*` to remove a previous version if you're not using a clean install):
 ```
@@ -274,7 +280,7 @@ If you are using the older Raspbian Jessie image, compiling Electronero is a bit
 	sudo ./bjam install
 ```
 
-* From here, follow the [general Raspberry Pi instructions](#on-the-raspberry-pi) from the "Clone Electronero and checkout most recent release version" step.
+* From here, follow the [general Raspberry Pi instructions](#on-the-raspberry-pi) from the "Clone ElectroneroPulse and checkout most recent release version" step.
 
 #### On Windows:
 
@@ -327,9 +333,9 @@ application.
 
 ### On FreeBSD:
 
-The project can be built from scratch by following instructions for Linux above. If you are running electronero in a jail you need to add the flag: `allow.sysvipc=1` to your jail configuration, otherwise lmdb will throw the error message: `Failed to open lmdb environment: Function not implemented`.
+The project can be built from scratch by following instructions for Linux above. If you are running electroneropulse in a jail you need to add the flag: `allow.sysvipc=1` to your jail configuration, otherwise lmdb will throw the error message: `Failed to open lmdb environment: Function not implemented`.
 
-We expect to add Electronero into the ports tree in the near future, which will aid in managing installations using ports or packages.
+We expect to add ElectroneroPulse into the ports tree in the near future, which will aid in managing installations using ports or packages.
 
 ### On OpenBSD:
 
@@ -344,7 +350,7 @@ The doxygen and graphviz packages are optional and require the xbase set.
 The Boost package has a bug that will prevent librpc.a from building correctly. In order to fix this, you will have to Build boost yourself from scratch. Follow the directions here (under "Building Boost"):
 https://github.com/bitcoin/bitcoin/blob/master/doc/build-openbsd.md
 
-You will have to add the serialization, date_time, and regex modules to Boost when building as they are needed by Electronero.
+You will have to add the serialization, date_time, and regex modules to Boost when building as they are needed by ElectroneroPulse.
 
 To build: `env CC=egcc CXX=eg++ CPP=ecpp DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/path/to/the/boost/you/built make release-static-64`
 
@@ -419,7 +425,7 @@ cmake ..
 doas make install
 ```
 
-Build electronero: `env DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/usr/local make release-static`
+Build electroneropulse: `env DEVELOPER_LOCAL_TOOLS=1 BOOST_ROOT=/usr/local make release-static`
 
 ### On Solaris:
 
@@ -435,11 +441,11 @@ Then you can run make as usual.
 ### On Linux for Android (using docker):
 
         # Build image (select android64.Dockerfile for aarch64)
-        cd utils/build_scripts/ && docker build -f android32.Dockerfile -t electronero-android .
+        cd utils/build_scripts/ && docker build -f android32.Dockerfile -t electroneropulse-android .
         # Create container
         docker create -it --name electronero-android electronero-android bash
         # Get binaries
-        docker cp electronero-android:/opt/android/electronero/build/release/bin .
+        docker cp electroneropulse-android:/opt/android/electronero-pulse/build/release/bin .
 
 ### Building portable statically linked binaries
 
@@ -453,15 +459,15 @@ By default, in either dynamically or statically linked builds, binaries target t
 * ```make release-static-win64``` builds binaries on 64-bit Windows portable across 64-bit Windows systems
 * ```make release-static-win32``` builds binaries on 64-bit or 32-bit Windows portable across 32-bit Windows systems
 
-## Running electronerod
+## Running electroneropulsed
 
 The build places the binary in `bin/` sub-directory within the build directory
 from which cmake was invoked (repository root by default). To run in
 foreground:
 
-    ./bin/electronero
+    ./bin/electronero-pulse
 
-To list all available options, run `./bin/electronerod --help`.  Options can be
+To list all available options, run `./bin/electroneropulsed --help`.  Options can be
 specified either on the command line or in a configuration file passed by the
 `--config-file` argument.  To specify an option in the configuration file, add
 a line with the syntax `argumentname=value`, where `argumentname` is the name
@@ -469,14 +475,14 @@ of the argument without the leading dashes, for example `log-level=1`.
 
 To run in background:
 
-    ./bin/electronerod --log-file electronerod.log --detach
+    ./bin/electroneropulsed --log-file electroneropulsed.log --detach
 
 To run as a systemd service, copy
-[electronerod.service](utils/systemd/electronerod.service) to `/etc/systemd/system/` and
-[electronerod.conf](utils/conf/electronerod.conf) to `/etc/`. The [example
-service](utils/systemd/electronerod.service) assumes that the user `electronero` exists
+[electroneropulsed.service](utils/systemd/electroneropulsed.service) to `/etc/systemd/system/` and
+[electroneropulsed.conf](utils/conf/electroneropulsed.conf) to `/etc/`. The [example
+service](utils/systemd/electroneropulsed.service) assumes that the user `electroneropulse` exists
 and its home is the data directory specified in the [example
-config](utils/conf/electronerod.conf).
+config](utils/conf/electroneropulsed.conf).
 
 If you're on Mac, you may need to add the `--max-concurrency 1` option to
-electronero-wallet-cli, and possibly electronerod, if you get crashes refreshing.
+electroneropulse-wallet-cli, and possibly electroneropulsed, if you get crashes refreshing.

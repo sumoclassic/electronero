@@ -120,7 +120,7 @@ namespace
   std::string get_default_ringdb_path()
   {
     boost::filesystem::path dir = tools::get_default_data_dir();
-    // remove .electronero, and replace .shared-ringdb with .ringdb in config 
+    // remove .electroneropulse, and replace .shared-ringdb with .ringdb in config 
     dir = dir.remove_filename();
     dir /= CRYPTONOTE_RINGDB_DIR; // CRYPTONOTE_RINGDB_DIR is in config
     return dir.string();
