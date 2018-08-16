@@ -103,9 +103,10 @@ namespace cryptonote {
     const int target_minutes = target / 60;
     const int emission_speed_factor = EMISSION_SPEED_FACTOR_PER_MINUTE - (target_minutes-1); 
     const int emission_speed_factor_v2 = EMISSION_SPEED_FACTOR_PER_MINUTE + (target_minutes-1);
-    const int emission_speed_factor_v3 = EMISSION_SPEED_FACTOR_PER_MINUTE + (target_minutes-2); // v10
-    uint64_t emission_speed = versionHeight < MAINNET_HARDFORK_V7_HEIGHT ? emission_speed_factor : versionHeight >= MAINNET_HARDFORK_V10_HEIGHT ? emission_speed_factor_v3 : emission_speed_factor_v2;
-    uint64_t base_reward = (TOKEN_SUPPLY - already_generated_coins) >> emission_speed_factor;
+    const int emission_speed_factor_v3 = EMISSION_SPEED_FACTOR_PER_MINUTE + (target_minutes-2); // v10 
+    const int emission_speed_factor_XP = EMISSION_SPEED_FACTOR_PER_MINUTE - (target_minutes-1); // v16 - ETNXP 
+    uint64_t emission_speed = versionHeight < MAINNET_HARDFORK_V7_HEIGHT ? emission_speed_factor : versionHeight >= MAINNET_HARDFORK_V10_HEIGHT ? emission_speed_factor_v3 : versionHeight >= MAINNET_HARDFORK_V16_HEIGHT ? emission_speed_factor_XP : emission_speed_factor_v2;
+    uint64_t base_reward = (TOKEN_SUPPLY - already_generated_coins) >> emission_speed;
     
     const uint64_t premine = 1260000000000U;
     if (height == 1 && already_generated_coins < premine) {
@@ -117,8 +118,14 @@ namespace cryptonote {
       reward = airdrop;
       return true;
     }
+    const uint64_t genesis_reward = GENESIS_CONTRACT;
+    const uint64_t etnxp_genesis = ETNXP_GENESIS;
+    if (height == etnxp_genesis) {
+      reward = genesis_reward;
+      return true;
+    }
     uint64_t round_factor = 10; // 1 * pow(10, 1)
-    if (version >= 7 && height > 307003)
+    if (version <= 15 && height > 307003)
     {
       if (height < (PEAK_COIN_EMISSION_HEIGHT + COIN_EMISSION_HEIGHT_INTERVAL)) {
         uint64_t interval_num = height / COIN_EMISSION_HEIGHT_INTERVAL;
@@ -134,25 +141,19 @@ namespace cryptonote {
       // do something
       base_reward = (TOKEN_SUPPLY - already_generated_coins) >> emission_speed;
     }
-    
-   const uint64_t FINITE_SUBSIDY = 100U;
-   if (base_reward < FINITE_SUBSIDY){
-     if (already_generated_coins >= (TOKEN_SUPPLY - already_generated_coins)){
-       base_reward = FINAL_SUBSIDY_PER_MINUTE;
-     }
-     else{
-       base_reward = FINITE_SUBSIDY/2;
-     }
-   }
-    
+
+    if (already_generated_coins >= (TOKEN_SUPPLY - already_generated_coins))
+    {
+    base_reward = FINAL_SUBSIDY_PER_MINUTE;
+    }
     // rounding (floor) base reward
-    if (version > 7)
+    if (version <= 15)
     {
     base_reward = base_reward / round_factor * round_factor;
     }
     if (version < 2) 
     {
-     base_reward = (MONEY_SUPPLY_ETN - already_generated_coins) >> emission_speed;
+    base_reward = (MONEY_SUPPLY_ETN - already_generated_coins) >> emission_speed;
     }
     uint64_t full_reward_zone = get_min_block_size(version);
 
