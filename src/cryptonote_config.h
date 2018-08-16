@@ -40,7 +40,7 @@
 #define CRYPTONOTE_GETBLOCKTEMPLATE_MAX_BLOCK_SIZE      196608 //size of block (bytes) that is the maximum that miners will produce
 #define CRYPTONOTE_MAX_TX_SIZE                          1000000000
 #define CRYPTONOTE_PUBLIC_ADDRESS_TEXTBLOB_VER          0
-#define CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW            18
+#define CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW            60
 #define CURRENT_TRANSACTION_VERSION                     2
 #define CURRENT_BLOCK_MAJOR_VERSION                     1
 #define CURRENT_BLOCK_MINOR_VERSION                     0
@@ -50,15 +50,18 @@
 
 #define BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW               60
 
-
-// Total number coins to be generated
-#define TOKEN                                           ((uint64_t)(3600000000000000)) // 
-
 // Number of smallest units in one coin
-#define COIN                                            ((uint64_t)100) // pow(10, 2)
+#define COIN                                            ((uint64_t)(100000000)) // pow(10, 8)
+// TOKENS - total number tokens to be generated
+#define MONEY_SUPPLY_ETN                                ((uint64_t)(2100000000000)) // ETN MONEY_SUPPLY
+#define MONEY_SUPPLY                                    ((uint64_t)(21000000000000)) // after the ETNX fork
+#define TOKENS                                          ((uint64_t)(20000000000000)) // after the first 10BB ETNX Coin Burn
+#define TOKENS_ETNXP                                    ((uint64_t)(5000000000000000000)) // 150% reduction in supply, move to 8 decimals 
 
 #define EMISSION_SPEED_FACTOR_PER_MINUTE                (20)
-#define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)100000000000) // 100k coins
+// GENESIS_CONTRACT - total number tokens in this Genesis 
+#define GENESIS_CONTRACT                                ((uint64_t)(2400000000000000000)) 
+#define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)(500000000)) 
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
  
@@ -70,11 +73,11 @@
 
 #define CRYPTONOTE_TX_FEE_RESERVED_SIZE                 3
 
-
-#define FEE_PER_KB_V2                                   ((uint64_t)40) // .4 * pow(10, 1)
-#define FEE_PER_KB                                      ((uint64_t)5000) // 50 * pow(10, 2)
-#define DYNAMIC_FEE_PER_KB_BASE_FEE                     ((uint64_t)2500) // .1 * pow(10, 1)
-#define DYNAMIC_FEE_PER_KB_BASE_BLOCK_REWARD            ((uint64_t)2500) // .10 * pow(10, 1)
+#define FEE_PER_KB_V2                                   ((uint64_t)2000000) // .2 * pow(10, 6)
+#define FEE_PER_KB_OLD                                  ((uint64_t)2000000) // .2 * pow(10, 6)
+#define FEE_PER_KB                                      ((uint64_t)2000000) // .2 * pow(10, 6)
+#define DYNAMIC_FEE_PER_KB_BASE_FEE                     ((uint64_t)2000000) // .2 * pow(10, 6)
+#define DYNAMIC_FEE_PER_KB_BASE_BLOCK_REWARD            ((uint64_t)2000000) // .2 * pow(10, 6)
 
 #define ORPHANED_BLOCKS_MAX_COUNT                       100
 
@@ -90,11 +93,16 @@
 #define DIFFICULTY_WINDOW_V2                            70
 #define DIFFICULTY_WINDOW_V3                            60
 
+#define DIFFICULTY_WINDOW_V4                            90
+
 #define DIFFICULTY_BLOCKS_COUNT_V2                      DIFFICULTY_WINDOW_V2
 #define DIFFICULTY_BLOCKS_COUNT_V3                      DIFFICULTY_WINDOW_V3
+#define DIFFICULTY_BLOCKS_COUNT_V4                      DIFFICULTY_WINDOW_V4
 
 #define CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_V2           DIFFICULTY_TARGET * 2 // https://github.com/zawy12/difficulty-algorithms/issues/3
 
+#define CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_V12          60*5
+#define CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_XP           60*4
 
 #define CRYPTONOTE_LOCKED_TX_ALLOWED_DELTA_SECONDS_V1   DIFFICULTY_TARGET_V1 * CRYPTONOTE_LOCKED_TX_ALLOWED_DELTA_BLOCKS
 #define CRYPTONOTE_LOCKED_TX_ALLOWED_DELTA_SECONDS_V2   DIFFICULTY_TARGET_V2 * CRYPTONOTE_LOCKED_TX_ALLOWED_DELTA_BLOCKS
@@ -190,7 +198,7 @@ namespace config
   boost::uuids::uuid const NETWORK_ID = { {
       0xF3 ,0xF3, 0xF3, 0xF3 , 0xF3, 0xF3 , 0xE3, 0xA4, 0xEA, 0x5D, 0xD1, 0x2C, 0x85, 0x8E, 0xC8, 0x39
     } }; // Bender's nightmare
-  std::string const GENESIS_TX = "011201ff00011e026bc5c7db8a664f652d78adb587ac4d759c6757258b64ef9cba3c0354e64fb2e42101abca6a39c561d0897be183eb0143990eba201aa7d2c652ab0555d28bb4b70728";
+  std::string const GENESIS_TX = "013c01ff00011e026bc5c7db8a664f652d78adb587ac4d759c6757258b64ef9cba3c0354e64fb2e42101abca6a39c561d0897be183eb0143990eba201aa7d2c652ab0555d28bb4b70728";
   uint32_t const GENESIS_NONCE = 10000;
 
   namespace testnet
