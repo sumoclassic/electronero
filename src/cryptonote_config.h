@@ -78,6 +78,7 @@
 #define FEE_PER_KB                                      ((uint64_t)2000000) // .2 * pow(10, 6)
 #define DYNAMIC_FEE_PER_KB_BASE_FEE                     ((uint64_t)2000000) // .2 * pow(10, 6)
 #define DYNAMIC_FEE_PER_KB_BASE_BLOCK_REWARD            ((uint64_t)2000000) // .2 * pow(10, 6)
+#define ETNXP_GENESIS                                   ((uint64_t)0) 
 
 #define ORPHANED_BLOCKS_MAX_COUNT                       100
 
