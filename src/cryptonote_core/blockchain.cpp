@@ -71,7 +71,8 @@
 #define MAINNET_HARDFORK_V12_HEIGHT ((uint64_t)(333690)) // MAINNET 72289156 hard fork 
 #define MAINNET_HARDFORK_V13_HEIGHT ((uint64_t)(337496)) // MAINNET v13 hard fork  
 #define MAINNET_HARDFORK_V14_HEIGHT ((uint64_t)(337816)) // MAINNET v14 hard fork
-#define MAINNET_HARDFORK_V15_HEIGHT ((uint64_t)(337838)) // MAINNET v15 hard fork test
+#define MAINNET_HARDFORK_V15_HEIGHT ((uint64_t)(337838)) // MAINNET v15 hard fork 
+#define MAINNET_HARDFORK_V15_HEIGHT ((uint64_t)(392300)) // MAINNET v16 hard fork test
 
 #define TESTNET_ELECTRONERO_HARDFORK ((uint64_t)(12746)) // Electronero TESTNET fork height
 #define TESTNET_HARDFORK_V1_HEIGHT ((uint64_t)(1)) // TESTNET v1 
@@ -149,7 +150,9 @@ static const struct {
   // Version 14
   { 14, MAINNET_HARDFORK_V14_HEIGHT, 0, 1530884769 },
   // Version 15
-  { 15, MAINNET_HARDFORK_V15_HEIGHT, 0, 1531327124 }
+  { 15, MAINNET_HARDFORK_V15_HEIGHT, 0, 1531327124 },
+  // Version 16
+  { 15, 392300, 0, 1534736280 },
 
 };
 static const uint64_t mainnet_hard_fork_version_1_till = MAINNET_HARDFORK_V7_HEIGHT-1;
@@ -880,8 +883,11 @@ difficulty_type Blockchain::get_difficulty_for_next_block()
   else if((uint64_t)versionHeight <= MAINNET_HARDFORK_V11_HEIGHT) {
     difficulty_blocks_count = DIFFICULTY_BLOCKS_COUNT_V2;
   }
-  else{
+  else if((uint64_t)versionHeight <= (uint64_t)ETNXP_GENESIS) {
     difficulty_blocks_count = DIFFICULTY_BLOCKS_COUNT_V12;
+  }
+  else{
+    difficulty_blocks_count = DIFFICULTY_BLOCKS_COUNT_XP;
   }
   if ((uint64_t)height >= MAINNET_HARDFORK_V7_HEIGHT - 3 && (uint64_t)height <= MAINNET_HARDFORK_V7_HEIGHT + 6)
   {
@@ -906,6 +912,11 @@ difficulty_type Blockchain::get_difficulty_for_next_block()
   if ((uint64_t)height >= MAINNET_HARDFORK_V13_HEIGHT && (uint64_t)height <= MAINNET_HARDFORK_V13_HEIGHT + (uint64_t)difficulty_blocks_count)
   {
   return (difficulty_type) 52289156;
+  }
+  // tests
+  if ((uint64_t)height >= (uint64_t)ETNXP_GENESIS - 3 && (uint64_t)height <= (uint64_t)ETNXP_GENESIS + (uint64_t)difficulty_blocks_count)
+  {
+  return (difficulty_type) 500;
   }
   // 1. Keep a list of the last 735 (or less) blocks that is used to compute difficulty,
   //    then when the next block difficulty is queried, push the latest height data and
@@ -1139,8 +1150,11 @@ difficulty_type Blockchain::get_next_difficulty_for_alternative_chain(const std:
   else if((uint64_t)versionHeight <= MAINNET_HARDFORK_V11_HEIGHT) {
     difficulty_blocks_count = DIFFICULTY_BLOCKS_COUNT_V2;
   }
-  else{
+  else if((uint64_t)versionHeight <= (uint64_t)ETNXP_GENESIS) {
     difficulty_blocks_count = DIFFICULTY_BLOCKS_COUNT_V12;
+  }
+  else{
+    difficulty_blocks_count = DIFFICULTY_BLOCKS_COUNT_XP;
   }
 
   // if the alt chain isn't long enough to calculate the difficulty target
@@ -3379,7 +3393,7 @@ bool Blockchain::check_block_timestamp(std::vector<uint64_t>& timestamps, const 
   LOG_PRINT_L3("Blockchain::" << __func__);
   median_ts = epee::misc_utils::median(timestamps);
   uint8_t hardfork_version = get_current_hard_fork_version();
-  size_t blockchain_timstamp_check_window = hardfork_version < 12 ? BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW : BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW_V12;
+  size_t blockchain_timestamp_check_window = hardfork_version < 12 ? BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW : BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW_V12;
 
   if(b.timestamp < median_ts)
   {
@@ -3406,8 +3420,10 @@ bool Blockchain::check_block_timestamp(const block& b, uint64_t& median_ts) cons
    block_future_time_limit = CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT;
   } else if(version < 12){
    block_future_time_limit = CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_V2;
-  } else{
+  } else if (version <= 15 ){
    block_future_time_limit = CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_V12;
+  } else{
+   block_future_time_limit = CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_XP;
   }
 
   size_t blockchain_timestamp_check_window = version < 12 ? BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW : BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW_V12;
