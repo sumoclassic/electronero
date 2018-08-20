@@ -99,6 +99,8 @@
 #define DIFFICULTY_BLOCKS_COUNT_V3                      DIFFICULTY_WINDOW_V3
 #define DIFFICULTY_BLOCKS_COUNT_V4                      DIFFICULTY_WINDOW_V4
 
+#define DIFFICULTY_BLOCKS_COUNT_XP					                	DIFFICULTY_WINDOW_V2
+
 #define CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_V2           DIFFICULTY_TARGET * 2 // https://github.com/zawy12/difficulty-algorithms/issues/3
 
 #define CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT_V12          60*5
