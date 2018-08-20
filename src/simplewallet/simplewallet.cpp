@@ -1786,26 +1786,18 @@ bool simple_wallet::set_unit(const std::vector<std::string> &args/* = std::vecto
 
   if (unit == "electroneropulse")
     decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT;
-  else if (unit == "wisdomXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 1;
-  else if (unit == "spiritXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 2;
-  else if (unit == "blissXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 3;
   else if (unit == "tokenXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 4;
+    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 1;
   else if (unit == "omegaXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 5;
+    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 2;
   else if (unit == "alphaXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 6;
+    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 3;
   else if (unit == "karmaXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 7;
-  else if (unit == "zenXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 8;
+    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 4;
   else if (unit == "shiftXP")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 9;
+    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 5;
   else if (unit == "electronero")
-    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 10;
+    decimal_point = CRYPTONOTE_DISPLAY_DECIMAL_POINT - 6;
   else if (unit == "noXP")
     decimal_point = 0;
   else
