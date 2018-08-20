@@ -49,18 +49,18 @@
 #define CRYPTONOTE_DEFAULT_TX_SPENDABLE_AGE             10
 
 #define BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW               60
-
+#define BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW_V12           30
 // Number of smallest units in one coin
 #define COIN                                            ((uint64_t)(100000000)) // pow(10, 8)
 // TOKENS - total number tokens to be generated
 #define MONEY_SUPPLY_ETN                                ((uint64_t)(2100000000000)) // ETN MONEY_SUPPLY
 #define MONEY_SUPPLY                                    ((uint64_t)(21000000000000)) // after the ETNX fork
 #define TOKENS                                          ((uint64_t)(20000000000000)) // after the first 10BB ETNX Coin Burn
-#define TOKENS_ETNXP                                    ((uint64_t)(5000000000000000000)) // 150% reduction in supply, move to 8 decimals 
+#define TOKENS_ETNXP                                    ((uint64_t)(10000000000000000000)) // 100% reduction in supply, move to 8 decimals 
 
 #define EMISSION_SPEED_FACTOR_PER_MINUTE                (20)
 // GENESIS_CONTRACT - total number tokens in this Genesis 
-#define GENESIS_CONTRACT                                ((uint64_t)(2400000000000000000)) 
+#define GENESIS_CONTRACT                                ((uint64_t)(5000000000000000000)) 
 #define FINAL_SUBSIDY_PER_MINUTE                        ((uint64_t)(500000000)) 
 
 #define CRYPTONOTE_REWARD_BLOCKS_WINDOW                 100
@@ -78,7 +78,7 @@
 #define FEE_PER_KB                                      ((uint64_t)2000000) // .2 * pow(10, 6)
 #define DYNAMIC_FEE_PER_KB_BASE_FEE                     ((uint64_t)2000000) // .2 * pow(10, 6)
 #define DYNAMIC_FEE_PER_KB_BASE_BLOCK_REWARD            ((uint64_t)2000000) // .2 * pow(10, 6)
-#define ETNXP_GENESIS                                   ((uint64_t)0) 
+#define ETNXP_GENESIS                                   ((uint64_t)392300) 
 
 #define ORPHANED_BLOCKS_MAX_COUNT                       100
 
@@ -93,7 +93,6 @@
 #define DIFFICULTY_TARGET_V2                            120  // seconds
 #define DIFFICULTY_WINDOW_V2                            70
 #define DIFFICULTY_WINDOW_V3                            60
-
 #define DIFFICULTY_WINDOW_V4                            90
 
 #define DIFFICULTY_BLOCKS_COUNT_V2                      DIFFICULTY_WINDOW_V2
