@@ -746,15 +746,15 @@ namespace cryptonote
       case 8:
         return "electroneropulse";
       case 7:
-        return "wisdomXP";
+        return "tokenXP";
       case 6:
-        return "spiritXP";
-      case 5:
         return "omegaXP";
-      case 4:
+      case 5:
         return "alphaXP";
+      case 4:
+        return "karmaXP";
       case 3:
-        return "zenXP";
+        return "shiftXP";
       case 2:
         return "electronero";
       case 0:
