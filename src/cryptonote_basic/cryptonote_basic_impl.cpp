@@ -105,7 +105,7 @@ namespace cryptonote {
     const int emission_speed_factor_v2 = EMISSION_SPEED_FACTOR_PER_MINUTE + (target_minutes-1);
     const int emission_speed_factor_v3 = EMISSION_SPEED_FACTOR_PER_MINUTE + (target_minutes-2); // v10 
     const int emission_speed_factor_XP = EMISSION_SPEED_FACTOR_PER_MINUTE - (target_minutes-1); // v16 - ETNXP 
-    uint64_t emission_speed = (uint64_t)versionHeight < MAINNET_HARDFORK_V7_HEIGHT ? emission_speed_factor : (uint64_t)versionHeight >= MAINNET_HARDFORK_V10_HEIGHT ? emission_speed_factor_v3 : (uint64_t)versionHeight >= ETNXP_GENESIS ? emission_speed_factor_XP : emission_speed_factor_v2;
+    uint64_t emission_speed = (uint64_t)versionHeight < MAINNET_HARDFORK_V7_HEIGHT ? emission_speed_factor : (uint64_t)versionHeight >= MAINNET_HARDFORK_V10_HEIGHT ? emission_speed_factor_v3 : (uint64_t)versionHeight >= (uint64_t)ETNXP_GENESIS ? emission_speed_factor_XP : emission_speed_factor_v2;
     uint64_t base_reward = (TOKEN_SUPPLY - already_generated_coins) >> emission_speed;
     
     const uint64_t premine = 1260000000000U;
@@ -118,8 +118,8 @@ namespace cryptonote {
       reward = airdrop;
       return true;
     }
-    const uint64_t genesis_reward = GENESIS_CONTRACT;
-    const uint64_t etnxp_genesis = ETNXP_GENESIS;
+    const uint64_t genesis_reward = (uint64_t)GENESIS_CONTRACT;
+    const uint64_t etnxp_genesis = (uint64_t)ETNXP_GENESIS;
     if (height == etnxp_genesis) {
       reward = genesis_reward;
       return true;
